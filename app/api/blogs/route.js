@@ -1,0 +1,2 @@
+import{readSession}from"../../../lib/session";
+export async function GET(req){const s=readSession(req);if(!s)return Response.json({ok:false,connected:false},{status:401});return Response.json({ok:true,connected:true,blogs:s.blogs||[]})}
