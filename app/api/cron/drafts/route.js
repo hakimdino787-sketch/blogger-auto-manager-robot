@@ -25,7 +25,9 @@ function fallback(topic){
 
 export async function GET(req){
  const expected=process.env.CRON_SECRET;
- if(!expected||req.headers.get("authorization")!==`Bearer ${expected}`)return NextResponse.json({ok:false,error:"غير مصرح"},{status:401});
+ const manual=req.nextUrl.searchParams.get("manual");
+ const authorized=(expected&&req.headers.get("authorization")===`Bearer ${expected}`)||(process.env.MANUAL_RUN_TOKEN&&manual===process.env.MANUAL_RUN_TOKEN);
+ if(!authorized)return NextResponse.json({ok:false,error:"غير مصرح"},{status:401});
  let s=await loadPersistentSession();
  if(!s?.refresh_token)return NextResponse.json({ok:false,error:"خاص ربط Blogger مرة واحدة من الواجهة باش نحفظ جلسة التشغيل"},{status:503});
  const rr=await refreshSession(s);
