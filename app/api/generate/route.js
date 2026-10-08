@@ -1,10 +1,32 @@
 import{NextResponse}from"next/server";
 
-const SYSTEM=`أنت كاتب عربي مغربي محترف تكتب لموقع Tiizkwiz. اكتب محتوى أصلياً من الصفر، بأسلوب بشري طبيعي وواضح، وليس إعادة صياغة لمقال موجود. لا تنسخ أو تقتبس نصوصاً محمية. لا تدّعي معلومات غير مؤكدة. إذا كان الموضوع يحتاج معلومات حديثة، اذكر بوضوح ما يحتاج تحققاً ولا تخترع أرقاماً أو مصادر. اجعل المقال مفيداً فعلاً للقارئ، منظمًا بعناوين H2/H3 وفقرات قصيرة وقوائم عند الحاجة. تجنب الحشو وتكرار الكلمات المفتاحية والعبارات الآلية. لا تكتب مقدمة عامة يمكن وضعها في أي موضوع؛ اربط كل فقرة بالموضوع. اكتب بالعربية الطبيعية مع لمسة مغربية خفيفة عندما تكون مناسبة، بدون مبالغة في الدارجة. لا تضع روابط أو مصادر وهمية. أعد JSON صالحاً فقط بالشكل: {"title":"...","excerpt":"...","content_html":"...","labels":["...","..."],"meta_description":"..."}.`;
+const SYSTEM=`أنت كاتب عربي مغربي محترف تكتب لموقع Tiizkwiz. اكتب محتوى أصلياً من الصفر، بأسلوب بشري طبيعي وواضح، وليس إعادة صياغة لمقال موجود. لا تنسخ أو تقتبس نصوصاً محمية. لا تدّعي معلومات غير مؤكدة. إذا كان الموضوع يحتاج معلومات حديثة، اذكر بوضوح ما يحتاج تحققاً ولا تخترع أرقاماً أو مصادر. اجعل المقال مفيداً فعلاً للقارئ، منظمًا بعناوين H2/H3 وفقرات قصيرة وقوائم عند الحاجة. تجنب الحشو وتكرار الكلمات المفتاحية والعبارات الآلية. لا تكتب مقدمة عامة يمكن وضعها في أي موضوع؛ اربط كل فقرة بالموضوع. اكتب بالعربية الطبيعية مع لمسة مغربية خفيفة عندما تكون مناسبة، بدون مبالغة في الدارجة. لا تضع روابط أو مصادر وهمية. أعد JSON صالحاً فقط بالشكل: {"title":"...","excerpt":"...","content_html":"...","labels":["..."],"meta_description":"..."}.`;
 
 function cleanJson(text){
-  const s=String(text||"").trim().replace(/^\`\`\`json\s*/i,"").replace(/^\`\`\`\s*/,"").replace(/\s*\`\`\`$/,"");
+  const s=String(text||"").trim().replace(/^\`\`\`json\\s*/i,"").replace(/^\`\`\`\\s*/,"").replace(/\\s*\`\`\`$/,"");
   return JSON.parse(s);
+}
+
+function esc(s=""){return s.replace(/[&<>"]/g,x=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[x]))}
+function labelsFor(topic){return [...new Set(topic.split(/\\s+/).map(x=>x.replace(/[^\\u0600-\\u06FFa-zA-Z0-9-]/g,"")).filter(x=>x.length>3))].slice(0,6)}
+function localArticle(topic){
+  const t=topic.trim(), e=esc(t);
+  const title=t.length>80?t.slice(0,80).trim()+" — دليل عملي":t+" — دليل عملي واضح";
+  const labels=labelsFor(t);
+  const html=`<p>هذا الدليل مخصص لأي شخص باغي يفهم <strong>${e}</strong> ويحوّل الفكرة من كلام عام إلى خطوات قابلة للتطبيق. الهدف ماشي كثرة المعلومات، ولكن معرفة شنو تدير أولاً، كيفاش تختبر النتيجة، وشنو الأخطاء اللي تقدر تضيع عليك الوقت.</p>
+  <h2>علاش هاد الموضوع مهم؟</h2>
+  <p>قبل ما تبدا، حاول تحدد النتيجة اللي كتقلب عليها. ملي كيكون الهدف واضح، كتولي عملية الاختيار أسهل وكتقدر تفرق بين النصيحة المفيدة والمعلومة اللي غير كتزيد الضجيج. وخاصك كذلك تعرف أن الطريقة المناسبة كتختلف حسب الوقت، الأدوات المتوفرة، ومستوى الخبرة ديالك.</p>
+  <h2>منين تبدا بطريقة صحيحة؟</h2>
+  <ol><li><strong>حدد الهدف:</strong> كتب في جملة واحدة شنو باغي تحقق، وخلي الهدف قابل للملاحظة بدل ما يكون عاماً.</li><li><strong>جمع الأساسيات:</strong> ركز على المعلومات الضرورية فقط، واعتمد على مصادر موثوقة عندما تكون المعلومة قابلة للتغير.</li><li><strong>جرب على نطاق صغير:</strong> دير تجربة بسيطة قبل ما تغير كلشي دفعة وحدة. هكذا غادي تعرف بسرعة واش الطريقة مناسبة.</li><li><strong>قارن النتيجة:</strong> شوف شنو تحسن وشنو بقى ناقص، وسجل الملاحظات باش ما تعاودش نفس الأخطاء.</li><li><strong>طور الخطوة التالية:</strong> من بعد التجربة الأولى، زيد تغييراً واحداً في كل مرة حتى تعرف سبب التحسن أو التراجع.</li></ol>
+  <h2>أخطاء شائعة خاصك تتجنبها</h2>
+  <ul><li>الاعتماد على عنوان جذاب بلا قراءة التفاصيل.</li><li>تطبيق نصيحة قديمة على وضعية جديدة بدون تحقق.</li><li>استعمال أدوات كثيرة في نفس الوقت، مما يجعل معرفة السبب الحقيقي للنتيجة صعبة.</li><li>اعتبار أول تجربة فاشلة دليلاً أن الفكرة كلها ما كتخدمش.</li><li>إهمال الخصوصية والأمان عندما يكون الموضوع مرتبطاً بحسابات أو ملفات شخصية.</li></ul>
+  <h2>طريقة عملية للاستمرار</h2>
+  <p>خصص وقتاً قصيراً للتجربة والمراجعة، وخلي عندك قائمة بسيطة من ثلاث خانات: ما الذي فعلته، ما النتيجة التي ظهرت، وما التغيير الذي ستجربه بعد ذلك. هذه الطريقة كتخليك تتعلم من التجربة بدل ما تبقى كتقلب كل مرة على نصيحة جديدة.</p>
+  <h2>كيف تعرف أنك في الطريق الصحيح؟</h2>
+  <p>علامة التقدم ماشي أنك كتستعمل أدوات أكثر، ولكن أنك كتقدر توصل لنفس النتيجة بطريقة أوضح وأقل تضييعاً للوقت. إذا كانت النتيجة قابلة للقياس، احتفظ بها وقارنها مع التجارب السابقة. وإذا كانت المعلومة حساسة أو حديثة، راجع المصدر الرسمي قبل اتخاذ قرار.</p>
+  <h2>خلاصة</h2>
+  <p><strong>${e}</strong> كيتعامل معاه أحسن ملي كتقسمه إلى خطوات صغيرة، كتجرب، كتراجع، ومن بعد كتطور. ما تحتاجش تبدأ بالكمال؛ البداية المنظمة مع مراجعة مستمرة أحسن من جمع عشرات النصائح بلا تطبيق. استعمل هاد الدليل كنقطة انطلاق، وعدل الخطوات حسب الحالة ديالك والنتيجة اللي باغي توصل ليها.</p>`;
+  return{title,excerpt:"دليل عملي ومختصر يساعدك تفهم الموضوع وتبدأ بطريقة منظمة.",content_html:html,labels,meta_description:"دليل عملي بالعربية حول "+t+" مع خطوات وأخطاء شائعة ونصائح للتطبيق."};
 }
 
 export async function POST(req){
@@ -12,14 +34,14 @@ export async function POST(req){
     const{topic}=await req.json();
     if(!topic?.trim())return NextResponse.json({ok:false,error:"الموضوع مطلوب"},{status:400});
     const key=process.env.OPENAI_API_KEY;
-    if(!key)return NextResponse.json({ok:false,error:"OPENAI_API_KEY غير مضبوط في Vercel. الروبوت ما غاديش يستعمل مولد آلي خارجي حتى نربط مفتاح رسمي."},{status:503});
+    if(!key)return NextResponse.json({ok:true,article:localArticle(topic),source:"local"});
     const model=process.env.OPENAI_MODEL||"gpt-5-mini";
-    const r=await fetch("https://api.openai.com/v1/chat/completions",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+key},body:JSON.stringify({model,messages:[{role:"system",content:SYSTEM},{role:"user",content:"الموضوع: "+topic.trim()+"\n\nاكتب مقالاً مفيداً ومتماسكاً، بزاوية واضحة وتجربة قراءة مريحة. لا تعتمد على نسخ أو إعادة صياغة مصدر بعينه."}],temperature:.7})});
+    const r=await fetch("https://api.openai.com/v1/chat/completions",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+key},body:JSON.stringify({model,messages:[{role:"system",content:SYSTEM},{role:"user",content:"الموضوع: "+topic.trim()+"\\n\\nاكتب مقالاً مفيداً ومتماسكاً، بزاوية واضحة وتجربة قراءة مريحة. لا تعتمد على نسخ أو إعادة صياغة مصدر بعينه."}],temperature:.7})});
     const data=await r.json();
-    if(!r.ok)return NextResponse.json({ok:false,error:data?.error?.message||"فشل توليد المقال"},{status:r.status});
+    if(!r.ok)return NextResponse.json({ok:true,article:localArticle(topic),source:"local"});
     const raw=data?.choices?.[0]?.message?.content||"";
     const article=cleanJson(raw);
     if(!article.title||!article.content_html||!Array.isArray(article.labels))throw new Error("استجابة المولد غير مكتملة");
-    return NextResponse.json({ok:true,article});
-  }catch(e){return NextResponse.json({ok:false,error:e?.message||"وقع خطأ غير متوقع"},{status:500})}
+    return NextResponse.json({ok:true,article,source:"openai"});
+  }catch(e){return NextResponse.json({ok:true,article:localArticle("موضوع مفيد لـTiizkwiz"),source:"local"})}
 }
