@@ -24,7 +24,8 @@ async function getSession(){
  return{s,blog}
 }
 
-export async function GET(req){\n if(new URL(req.url).searchParams.get("enhance")==="1")return enhance(req);
+export async function GET(req){
+ if(new URL(req.url).searchParams.get("enhance")==="1")return enhance(req);
  const x=await getSession();if(x.error)return NextResponse.json({ok:false,error:x.error},{status:503});
  const{s,blog}=x;
  const list=await fetch("https://www.googleapis.com/blogger/v3/blogs/"+encodeURIComponent(blog.id)+"/posts?status=draft&maxResults=100&fetchBodies=false",{headers:{Authorization:"Bearer "+s.access_token}});
