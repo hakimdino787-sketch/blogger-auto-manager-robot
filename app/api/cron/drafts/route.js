@@ -72,4 +72,5 @@ export async function DELETE(req){
  }
  return NextResponse.json({ok:failed.length===0,removed,failed});
 }
-\nexport async function POST(req){return enhance(req);}\n
+
+export async function POST(req){return enhance(req);}
