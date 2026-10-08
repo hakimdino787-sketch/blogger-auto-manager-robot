@@ -93,6 +93,7 @@ button,.btn{font:inherit}
     <p>محتوى مفيد، منظم وسهل القراءة — مع تصميم سريع ومتجاوب مع الهاتف والحاسوب.</p>
   </div>
 </div>
+<div class="hero"><div class="share-box" style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:14px 16px;box-shadow:0 6px 20px rgba(15,23,42,.05)"><strong>📤 شارك هاد المحتوى</strong><button class="share-btn fb" onclick="simoShare('facebook')">Facebook</button><button class="share-btn wa" onclick="simoShare('whatsapp')">WhatsApp</button><button class="share-btn tg" onclick="simoShare('telegram')">Telegram</button><button class="share-btn xbtn" onclick="simoShare('x')">X</button><button class="share-btn copy" onclick="simoCopy()">نسخ الرابط</button></div></div>
 
 <div class="layout">
   <main class="content-card">
