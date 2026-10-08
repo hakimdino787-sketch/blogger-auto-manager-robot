@@ -41,6 +41,7 @@ export async function GET(req){
 }
 
 export async function POST(req){
+  if(process.env.BLOGGER_WRITES_ENABLED!=="true")return Response.json({ok:false,error:"Blogger API للكتابة متوقف مؤقتاً لحماية الحساب أثناء مراجعة تقييد Google. يمكنك حفظ المقال محلياً، وسيُعاد تفعيل الإرسال بعد رفع التقييد."},{status:423});
   const {session:s,refreshed,refreshError}=await getValidSession(req);
   if(!s?.access_token)return Response.json({ok:false,error:refreshError?"تعذر تجديد جلسة Google":"غير مربوط"},{status:401});
   const{blogId,title,content,draft=false,labels=[]}=await req.json();
