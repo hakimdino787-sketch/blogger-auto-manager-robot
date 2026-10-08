@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version="2"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://www.google.com/2005/gml/b"
+      xmlns:data="http://www.google.com/2005/gml/data"
+      xmlns:expr="http://www.google.com/2005/gml/expr"
+      dir="rtl"
+      lang="ar">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title><data:blog.pageTitle/></title>
+  <meta expr:content='data:blog.metaDescription' name="description"/>
+  <meta expr:content='data:blog.url' property="og:url"/>
+  <meta expr:content='data:blog.pageTitle' property="og:title"/>
+  <meta expr:content='data:blog.metaDescription' property="og:description"/>
+  <meta content="website" property="og:type"/>
+  <meta content="Tiizkwiz" property="og:site_name"/>
+  <meta expr:content='data:blog.url' name="twitter:url"/>
+  <meta expr:content='data:blog.pageTitle' name="twitter:title"/>
+  <meta expr:content='data:blog.metaDescription' name="twitter:description"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+  <link expr:href='data:blog.canonicalUrl' rel="canonical"/>
+
+  <b:skin><![CDATA[
+    :root{--bg:#f5f7fb;--surface:#fff;--text:#111827;--muted:#667085;--line:#e6eaf0;--brand:#2563eb;--brand2:#1d4ed8;--dark:#0f172a;--radius:18px;--shadow:0 10px 30px rgba(15,23,42,.07);--max:1180px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.85}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto}
+    .tz-wrap{width:min(calc(100% - 28px),var(--max));margin:auto}
+    .tz-top{background:var(--dark);color:#dbe4f0;font-size:13px}
+    .tz-top .tz-wrap{display:flex;justify-content:space-between;gap:12px;padding:7px 0}
+    .tz-header{background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;backdrop-filter:blur(12px)}
+    .tz-head{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .tz-brand{display:flex;align-items:center;gap:11px;min-width:max-content}
+    .tz-mark{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--brand),#60a5fa);display:grid;place-items:center;color:#fff;font-weight:900;font-size:20px;box-shadow:0 7px 18px rgba(37,99,235,.25)}
+    .tz-brand strong{font-size:22px;letter-spacing:-.5px}
+    .tz-brand small{display:block;color:var(--muted);font-size:11px;line-height:1.2}
+    .tz-nav{display:flex;align-items:center;gap:5px}
+    .tz-nav a{padding:9px 11px;border-radius:10px;font-size:14px;color:#344054}
+    .tz-nav a:hover{background:#eef4ff;color:var(--brand)}
+    .tz-search{display:flex;align-items:center;border:1px solid var(--line);background:#f8fafc;border-radius:12px;overflow:hidden}
+    .tz-search input{border:0;background:transparent;outline:0;padding:9px 11px;width:150px;font-family:inherit}
+    .tz-search button{border:0;background:var(--brand);color:#fff;padding:9px 12px;cursor:pointer;font-family:inherit}
+    .tz-main{padding:28px 0 55px}
+    .tz-grid{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:24px;align-items:start}
+    .tz-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .tz-hero{overflow:hidden;margin-bottom:24px}
+    .tz-hero-media{aspect-ratio:16/8;background:#dbe5f5;overflow:hidden}
+    .tz-hero-media img{width:100%;height:100%;object-fit:cover;display:block}
+    .tz-hero-body{padding:25px}
+    .tz-kicker{display:inline-flex;background:#eaf2ff;color:var(--brand);padding:5px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    .tz-hero h1{font-size:clamp(27px,4vw,43px);line-height:1.25;margin:13px 0 10px;letter-spacing:-1px}
+    .tz-meta{color:var(--muted);font-size:13px;display:flex;gap:12px;flex-wrap:wrap}
+    .tz-section-title{display:flex;align-items:center;justify-content:space-between;margin:30px 0 14px}
+    .tz-section-title h2{margin:0;font-size:22px}
+    .tz-section-title a{color:var(--brand);font-size:13px}
+    .tz-posts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .tz-post{overflow:hidden}
+    .tz-post-thumb{aspect-ratio:16/9;background:#edf1f7;overflow:hidden}
+    .tz-post-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}
+    .tz-post:hover img{transform:scale(1.025)}
+    .tz-post-body{padding:17px}
+    .tz-post h3{font-size:18px;line-height:1.45;margin:8px 0}
+    .tz-post p{margin:0;color:var(--muted);font-size:13px}
+    .tz-side{position:sticky;top:100px}
+    .tz-side-card{padding:20px;margin-bottom:16px}
+    .tz-side-card h3{margin:0 0 12px;font-size:17px}
+    .tz-cats{display:grid;gap:7px}
+    .tz-cats a{padding:9px 10px;border-radius:10px;background:#f7f9fc;color:#475467;font-size:13px}
+    .tz-cats a:hover{background:#eef4ff;color:var(--brand)}
+    .tz-ad{min-height:90px;border:1px dashed #cbd5e1;border-radius:14px;display:grid;place-items:center;color:#98a2b3;font-size:12px;background:#fafbfc}
+    .tz-newsletter{margin-top:28px;padding:25px;background:linear-gradient(135deg,#eff6ff,#fff);border:1px solid #dbeafe;border-radius:var(--radius)}
+    .tz-newsletter h2{margin:0 0 5px;font-size:22px}
+    .tz-newsletter p{margin:0 0 15px;color:var(--muted)}
+    .tz-post-page{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(18px,4vw,38px);box-shadow:var(--shadow)}
+    .tz-breadcrumb{font-size:12px;color:var(--muted);margin-bottom:13px}
+    .tz-post-page h1{font-size:clamp(29px,5vw,46px);line-height:1.25;margin:0 0 10px;letter-spacing:-1px}
+    .tz-post-page .post-body{font-size:17px;line-height:2;margin-top:25px}
+    .tz-post-page .post-body img{border-radius:15px;margin:16px auto;display:block}
+    .tz-post-page .post-body h2{font-size:25px;line-height:1.4;margin:32px 0 10px}
+    .tz-post-page .post-body h3{font-size:21px;margin:25px 0 8px}
+    .tz-post-page .post-body blockquote{margin:22px 0;padding:15px 18px;border-right:4px solid var(--brand);background:#f4f8ff;border-radius:10px;color:#344054}
+    .tz-article{font-size:17px}
+    .tz-article .tz-intro{font-size:19px;color:#344054;background:#f8fafc;border-right:4px solid var(--brand);padding:15px 17px;border-radius:10px;margin:20px 0}
+    .tz-article .tz-tip,.tz-article .tz-info,.tz-article .tz-summary{margin:22px 0;padding:16px 18px;border-radius:13px;border:1px solid #dbe4f0;background:#f8fafc}
+    .tz-article .tz-tip{background:#f0fdf4;border-color:#bbf7d0}
+    .tz-article .tz-info{background:#eff6ff;border-color:#bfdbfe}
+    .tz-article .tz-summary{background:#fff7ed;border-color:#fed7aa}
+    .tz-article figure.tz-hero{margin:20px 0}
+    .tz-article figure.tz-hero img{width:100%;border-radius:16px}
+    .tz-share{display:flex;gap:8px;flex-wrap:wrap;margin-top:25px;padding-top:18px;border-top:1px solid var(--line)}
+    .tz-share a{padding:8px 12px;border-radius:9px;background:#f2f4f7;font-size:13px}
+    .tz-footer{background:var(--dark);color:#cbd5e1;margin-top:0}
+    .tz-footer-main{padding:40px 0 25px;display:grid;grid-template-columns:1.5fr repeat(2,1fr);gap:35px}
+    .tz-footer h3{color:#fff;margin:0 0 10px}
+    .tz-footer p{font-size:13px;color:#94a3b8;margin:0}
+    .tz-footer a{display:block;font-size:13px;color:#cbd5e1;margin:6px 0}
+    .tz-footer a:hover{color:#fff}
+    .tz-copy{border-top:1px solid rgba(255,255,255,.1);padding:15px 0;font-size:12px;color:#94a3b8;text-align:center}
+    .tz-back{position:fixed;left:16px;bottom:16px;width:42px;height:42px;border:0;border-radius:12px;background:var(--brand);color:#fff;cursor:pointer;box-shadow:var(--shadow);display:none}
+    .item-control{display:none!important}
+    .post-footer,.feed-links{display:none!important}
+    @media(max-width:980px){.tz-nav{display:none}.tz-search input{width:110px}.tz-grid{grid-template-columns:1fr}.tz-side{display:none}.tz-footer-main{grid-template-columns:1fr 1fr}}
+    @media(max-width:640px){.tz-top{display:none}.tz-wrap{width:min(calc(100% - 20px),var(--max))}.tz-head{min-height:66px}.tz-brand small{display:none}.tz-search input{width:92px}.tz-main{padding-top:15px}.tz-posts{grid-template-columns:1fr}.tz-hero-body{padding:18px}.tz-hero h1{font-size:27px}.tz-post-page{padding:17px;border-radius:14px}.tz-post-page .post-body{font-size:16px}.tz-footer-main{grid-template-columns:1fr;gap:22px;padding:30px 0 20px}.tz-newsletter{padding:19px}}
+  ]]></b:skin>
+
+  <b:if cond='data:view.isPost'>
+    <script type="application/ld+json">
+      <![CDATA[
+      {
+        "@context":"https://schema.org",
+        "@type":"Article",
+        "headline":"<data:blog.pageName/>",
+        "url":"<data:blog.canonicalUrl/>",
+        "mainEntityOfPage":{"@type":"WebPage","@id":"<data:blog.canonicalUrl/>"},
+        "publisher":{"@type":"Organization","name":"Tiizkwiz"},
+        "inLanguage":"ar"
+      }
+      ]]>
+    </script>
+  </b:if>
+</head>
+
+<body>
+  <div class="tz-top"><div class="tz-wrap"><span>Tiizkwiz — مجلة عربية رقمية</span><span>تقنية • ذكاء اصطناعي • ربح • أدوات</span></div></div>
+
+  <header class="tz-header">
+    <div class="tz-wrap tz-head">
+      <a class="tz-brand" expr:href='data:blog.homepageUrl' aria-label="Tiizkwiz">
+        <span class="tz-mark">T</span>
+        <span><strong>Tiizkwiz</strong><small>أفكار وأدوات رقمية بالعربية</small></span>
+      </a>
+
+      <nav class="tz-nav" aria-label="القائمة الرئيسية">
+        <a expr:href='data:blog.homepageUrl'>الرئيسية</a>
+        <a expr:href='data:blog.homepageUrl + "search/label/الربح والعمل"'>الربح والعمل</a>
+        <a expr:href='data:blog.homepageUrl + "search/label/التقنية"'>التقنية</a>
+        <a expr:href='data:blog.homepageUrl + "search/label/الذكاء الاصطناعي"'>الذكاء الاصطناعي</a>
+        <a expr:href='data:blog.homepageUrl + "search/label/الأدوات"'>الأدوات</a>
+        <a expr:href='data:blog.homepageUrl + "search/label/شروحات"'>شروحات</a>
+      </nav>
+
+      <form class="tz-search" expr:action='data:blog.homepageUrl + "search"' method="get">
+        <input name="q" placeholder="ابحث..." type="search"/>
+        <button aria-label="بحث" type="submit">⌕</button>
+      </form>
+    </div>
+  </header>
+
+  <main class="tz-main">
+    <div class="tz-wrap">
+      <b:section class="tz-content" id="main" maxwidgets="3" showaddelement="no">
+        <b:widget id="Blog1" locked="true" title="المقالات" type="Blog" version="2" visible="true">
+          <b:includable id="main">
+            <b:if cond='data:view.isHomepage'>
+              <div class="tz-grid">
+                <div>
+                  <b:loop values='data:posts' var='post'>
+                    <b:if cond='data:post.isFirstPost'>
+                      <article class="tz-card tz-hero">
+                        <a class="tz-hero-media" expr:href='data:post.url'>
+                          <b:if cond='data:post.featuredImage'>
+                            <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                          <b:else/>
+                            <div class="tz-ad">صورة المقال</div>
+                          </b:if>
+                        </a>
+                        <div class="tz-hero-body">
+                          <span class="tz-kicker"><data:post.labels.first.name/></span>
+                          <h1><a expr:href='data:post.url'><data:post.title/></a></h1>
+                          <div class="tz-meta"><span><data:post.timestamp/></span><span>قراءة سهلة ومباشرة</span></div>
+                        </div>
+                      </article>
+                    </b:if>
+                  </b:loop>
+
+                  <div class="tz-section-title"><h2>أحدث المقالات</h2><a expr:href='data:blog.homepageUrl'>عرض الكل</a></div>
+                  <div class="tz-posts">
+                    <b:loop values='data:posts' var='post'>
+                      <article class="tz-card tz-post">
+                        <a class="tz-post-thumb" expr:href='data:post.url'>
+                          <b:if cond='data:post.featuredImage'>
+                            <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                          <b:else/>
+                            <div class="tz-ad">Tiizkwiz</div>
+                          </b:if>
+                        </a>
+                        <div class="tz-post-body">
+                          <span class="tz-kicker"><data:post.labels.first.name/></span>
+                          <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
+                          <p><data:post.snippet/></p>
+                        </div>
+                      </article>
+                    </b:loop>
+                  </div>
+
+                  <div class="tz-newsletter">
+                    <h2>خليك قريب من الجديد</h2>
+                    <p>تابع أحدث الأدوات والشروحات والأفكار الرقمية التي تستحق التجربة.</p>
+                  </div>
+                </div>
+
+                <aside class="tz-side">
+                  <div class="tz-card tz-side-card">
+                    <h3>التصنيفات</h3>
+                    <div class="tz-cats">
+                      <a expr:href='data:blog.homepageUrl + "search/label/الربح والعمل"'>الربح والعمل</a>
+                      <a expr:href='data:blog.homepageUrl + "search/label/التقنية"'>التقنية</a>
+                      <a expr:href='data:blog.homepageUrl + "search/label/الذكاء الاصطناعي"'>الذكاء الاصطناعي</a>
+                      <a expr:href='data:blog.homepageUrl + "search/label/الأدوات"'>الأدوات</a>
+                      <a expr:href='data:blog.homepageUrl + "search/label/شروحات"'>شروحات</a>
+                    </div>
+                  </div>
+                  <div class="tz-ad">مساحة إعلانية اختيارية</div>
+                </aside>
+              </div>
+            <b:else/>
+              <b:loop values='data:posts' var='post'>
+                <article class="tz-post-page">
+                  <div class="tz-breadcrumb"><a expr:href='data:blog.homepageUrl'>الرئيسية</a> ← المقال</div>
+                  <span class="tz-kicker"><data:post.labels.first.name/></span>
+                  <h1><data:post.title/></h1>
+                  <div class="tz-meta"><span><data:post.timestamp/></span><span>Tiizkwiz</span></div>
+                  <div class="post-body">
+                    <b:if cond='data:post.featuredImage'>
+                      <figure class="tz-article tz-hero"><img expr:alt='data:post.title' expr:src='data:post.featuredImage'/></figure>
+                    </b:if>
+                    <div class="tz-article"><data:post.body/></div>
+                  </div>
+                  <div class="tz-share">
+                    <span>شارك:</span>
+                    <a expr:href='"https://www.facebook.com/sharer/sharer.php?u=" + data:post.url' target="_blank" rel="noopener">Facebook</a>
+                    <a expr:href='"https://twitter.com/intent/tweet?url=" + data:post.url + "&amp;text=" + data:post.title' target="_blank" rel="noopener">X</a>
+                    <a expr:href='"https://wa.me/?text=" + data:post.title + "%20" + data:post.url' target="_blank" rel="noopener">WhatsApp</a>
+                  </div>
+                  <b:if cond='data:blog.pageType == "item"'>
+                    <b:include data='post' name='postQuickEdit'/>
+                  </b:if>
+                </article>
+              </b:loop>
+            </b:if>
+          </b:includable>
+          <b:includable id="postQuickEdit" var="post"></b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+  </main>
+
+  <footer class="tz-footer">
+    <div class="tz-wrap tz-footer-main">
+      <div>
+        <h3>Tiizkwiz</h3>
+        <p>مجلة عربية رقمية تهتم بالذكاء الاصطناعي، التقنية، الأدوات، العمل والربح الرقمي.</p>
+      </div>
+      <div>
+        <h3>المجلة</h3>
+        <a expr:href='data:blog.homepageUrl'>الرئيسية</a>
+        <a expr:href='data:blog.homepageUrl + "p/about.html"'>من نحن</a>
+        <a expr:href='data:blog.homepageUrl + "p/contact.html"'>اتصل بنا</a>
+      </div>
+      <div>
+        <h3>القانون</h3>
+        <a expr:href='data:blog.homepageUrl + "p/privacy.html"'>سياسة الخصوصية</a>
+        <a expr:href='data:blog.homepageUrl + "p/terms.html"'>الشروط والأحكام</a>
+      </div>
+    </div>
+    <div class="tz-copy">© <data:blog.title/> — جميع الحقوق محفوظة</div>
+  </footer>
+
+  <button class="tz-back" id="tzBack" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="العودة للأعلى">↑</button>
+  <script>
+    (function(){
+      var b=document.getElementById('tzBack');
+      window.addEventListener('scroll',function(){if(b)b.style.display=window.scrollY>500?'grid':'none';});
+    })();
+  </script>
+</body>
+</html>
