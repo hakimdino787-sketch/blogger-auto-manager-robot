@@ -43,7 +43,7 @@ export async function POST(req){
  for(const p of drafts){
   const title=(p.title||"Tiizkwiz").trim();
   const body=p.content||"";
-  const hasCover=/<img[^>]+data:image\/svg\+xml/i.test(body)||/Tiizkwiz\s*•\s*دليل عملي/i.test(body);
+  const hasCover=/<img\\b[^>]*\\bsrc\\s*=\\s*["\'][^"\']+["\']/i.test(body);
   const qr=await fetch(new URL("/api/quality-check",req.url),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({topic:title,title,content:body})});
   const qd=await qr.json().catch(()=>({}));
   const newBody=hasCover?body:'<article dir="rtl"><img src="'+cover(title)+'" alt="'+title.replace(/"/g,"")+'" style="width:100%;height:auto;border-radius:18px;margin-bottom:24px"/> '+body+'</article>';
