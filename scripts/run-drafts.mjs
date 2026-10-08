@@ -1,0 +1,1 @@
+const r=await fetch("https://blogger-auto-manager-robot.vercel.app/api/cron/drafts");const t=await r.text();console.log(t);if(!r.ok)process.exit(1);
