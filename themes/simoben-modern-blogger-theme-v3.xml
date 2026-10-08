@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version="2" b:responsive="true" expr:dir="data:blog.languageDirection" expr:lang="data:blog.locale" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr">
+<head>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<b:include data="blog" name="all-head-content"/>
+<title><data:blog.pageTitle/></title>
+<b:skin><![CDATA[
+/* Simoben Modern Magazine v3 */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f5f7fb;color:#172033;font-family:Arial,Tahoma,sans-serif;line-height:1.75}
+a{color:#2563eb;text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;height:auto}
+button,.btn{font:inherit}
+.site-header{background:linear-gradient(135deg,#0f172a 0%,#1d4ed8 55%,#2563eb 100%);color:#fff}
+.header-inner{max-width:1180px;margin:auto;padding:26px 18px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:14px;color:#fff;text-decoration:none}
+.logo{width:54px;height:54px;border-radius:16px;background:#fff;color:#1d4ed8;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;box-shadow:0 10px 25px rgba(0,0,0,.18)}
+.brand-title{font-size:27px;font-weight:900;line-height:1.2}
+.brand-desc{font-size:13px;opacity:.85}
+.top-search{display:flex;gap:8px}
+.top-search input{border:0;border-radius:12px;padding:11px 13px;width:210px;outline:0}
+.top-search button{border:0;border-radius:12px;padding:11px 14px;background:#fff;color:#1d4ed8;font-weight:800;cursor:pointer}
+.nav{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:20;box-shadow:0 4px 18px rgba(15,23,42,.05)}
+.nav-inner{max-width:1180px;margin:auto;padding:0 18px;min-height:54px;display:flex;align-items:center;gap:8px;overflow:auto}
+.nav-inner a{white-space:nowrap;padding:10px 13px;color:#334155;font-weight:700;border-radius:10px}
+.nav-inner a:hover{background:#eff6ff;text-decoration:none;color:#2563eb}
+.hero{max-width:1180px;margin:28px auto 0;padding:0 18px}
+.hero-box{background:linear-gradient(135deg,#e0ecff,#fff);border:1px solid #dbeafe;border-radius:24px;padding:28px}
+.hero-box h1{margin:0 0 8px;font-size:34px;line-height:1.25}
+.hero-box p{margin:0;color:#64748b}
+.layout{max-width:1180px;margin:24px auto;padding:0 18px;display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:24px}
+.content-card,.side-card{background:#fff;border:1px solid #e5e7eb;border-radius:20px;box-shadow:0 8px 28px rgba(15,23,42,.06)}
+.content-card{padding:24px}
+.side-card{padding:18px;margin-bottom:18px}
+.post-article{padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid #e5e7eb}
+.post-title{font-size:30px;line-height:1.35;margin:0 0 12px}
+.post-title a{color:#111827}
+.post-meta{color:#64748b;font-size:13px;margin-bottom:14px}
+.post-body{font-size:17px}
+.post-body img{border-radius:16px}
+.readmore{display:inline-block;margin-top:14px;padding:9px 14px;background:#2563eb;color:#fff;border-radius:10px;font-weight:800}
+.readmore:hover{color:#fff;text-decoration:none;background:#1d4ed8}
+.widget-title{margin:0 0 13px;font-size:18px}
+.sidebar-list ul{margin:0;padding-right:20px}
+.sidebar-list li{margin:7px 0}
+.share-box{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0;padding-top:18px;border-top:1px solid #e5e7eb}
+.share-box strong{width:100%;margin-bottom:2px}
+.share-btn{border:0;border-radius:10px;padding:9px 12px;color:#fff;cursor:pointer;font-weight:800;text-decoration:none!important}
+.fb{background:#1877f2}.wa{background:#25d366}.tg{background:#229ed9}.xbtn{background:#111827}.copy{background:#64748b}
+.site-footer{margin-top:36px;background:#0f172a;color:#cbd5e1}
+.footer-inner{max-width:1180px;margin:auto;padding:34px 18px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:28px}
+.footer-brand{color:#fff;font-size:22px;font-weight:900}
+.footer-title{color:#fff;font-weight:800;margin-bottom:10px}
+.footer-links a{display:block;color:#cbd5e1;margin:6px 0}
+.footer-links a:hover{color:#fff}
+.copyright{border-top:1px solid rgba(255,255,255,.12);text-align:center;padding:18px;color:#94a3b8;font-size:13px}
+.backtop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border:0;border-radius:50%;background:#2563eb;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 10px 24px rgba(37,99,235,.3)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr 1fr}.top-search{display:none}}
+@media(max-width:560px){.header-inner{padding:20px 14px}.brand-title{font-size:22px}.logo{width:46px;height:46px}.hero-box{padding:22px}.hero-box h1{font-size:27px}.layout{padding:0 12px}.content-card{padding:17px}.post-title{font-size:25px}.footer-inner{grid-template-columns:1fr}}
+]]></b:skin>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" expr:href="data:blog.homepageUrl">
+      <span class="logo">SB</span>
+      <span><span class="brand-title"><data:blog.title/></span><br/><span class="brand-desc"><data:blog.description/></span></span>
+    </a>
+    <form class="top-search" expr:action="data:blog.homepageUrl" method="get">
+      <input name="q" placeholder="قلب فالمقالات..." type="search"/>
+      <button type="submit">بحث</button>
+    </form>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a expr:href="data:blog.homepageUrl">الرئيسية</a>
+    <a href="/p/about.html">من نحن</a>
+    <a href="/p/contact.html">اتصل بنا</a>
+    <a href="/p/privacy-policy.html">سياسة الخصوصية</a>
+    <a href="/p/terms.html">الشروط</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-box">
+    <h1>مرحباً بكم في <data:blog.title/></h1>
+    <p>محتوى مفيد، منظم وسهل القراءة — مع تصميم سريع ومتجاوب مع الهاتف والحاسوب.</p>
+  </div>
+</div>
+
+<div class="layout">
+  <main class="content-card">
+    <b:section id="main" class="main" showaddelement="yes">
+      <b:widget id="Blog1" type="Blog" locked="true" title="المقالات"/>
+    </b:section>
+  </main>
+
+  <aside>
+    <div class="side-card">
+      <h2 class="widget-title">🔎 ابحث</h2>
+      <form expr:action="data:blog.homepageUrl" method="get">
+        <input name="q" placeholder="ابحث هنا..." style="width:100%;padding:11px;border:1px solid #dbe1ea;border-radius:10px" type="search"/>
+        <button style="margin-top:8px;width:100%;padding:10px;border:0;border-radius:10px;background:#2563eb;color:#fff;font-weight:800" type="submit">بحث</button>
+      </form>
+    </div>
+    <div class="side-card sidebar-list">
+      <b:section id="sidebar" class="sidebar" showaddelement="yes">
+        <b:widget id="Label1" type="Label" locked="false" title="التصنيفات"/>
+        <b:widget id="BlogArchive1" type="BlogArchive" locked="false" title="الأرشيف"/>
+      </b:section>
+    </div>
+    <div class="side-card">
+      <h2 class="widget-title">📌 صفحات مهمة</h2>
+      <div class="footer-links">
+        <a href="/p/about.html">من نحن</a>
+        <a href="/p/privacy-policy.html">سياسة الخصوصية</a>
+        <a href="/p/terms.html">الشروط والأحكام</a>
+        <a href="/p/contact.html">اتصل بنا</a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand"><data:blog.title/></div>
+      <p>محتوى عملي وتصميم بسيط وسريع، مع احترام الخصوصية وحقوق النشر.</p>
+    </div>
+    <div>
+      <div class="footer-title">روابط</div>
+      <div class="footer-links">
+        <a expr:href="data:blog.homepageUrl">الرئيسية</a>
+        <a href="/p/about.html">من نحن</a>
+        <a href="/p/contact.html">اتصل بنا</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-title">قانوني</div>
+      <div class="footer-links">
+        <a href="/p/privacy-policy.html">سياسة الخصوصية</a>
+        <a href="/p/terms.html">الشروط والأحكام</a>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">© <script>document.write(new Date().getFullYear())</script> <data:blog.title/> — جميع الحقوق محفوظة.</div>
+</footer>
+
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="العودة للأعلى">↑</button>
+
+<script>
+function simoShare(type){
+  var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title);
+  var x='';
+  if(type==='facebook')x='https://www.facebook.com/sharer/sharer.php?u='+u;
+  if(type==='whatsapp')x='https://api.whatsapp.com/send?text='+t+'%20'+u;
+  if(type==='telegram')x='https://t.me/share/url?url='+u+'&text='+t;
+  if(type==='x')x='https://twitter.com/intent/tweet?text='+t+'&url='+u;
+  if(x)window.open(x,'_blank','width=700,height=600');
+}
+function simoCopy(){
+  navigator.clipboard.writeText(window.location.href).then(function(){alert('تم نسخ رابط المقال')});
+}
+</script>
+
+<b:section id="footerwidgets" class="footer" showaddelement="yes">
+  <b:widget id="Attribution1" type="Attribution" locked="true" title="الإسناد"/>
+</b:section>
+</body>
+</html>
