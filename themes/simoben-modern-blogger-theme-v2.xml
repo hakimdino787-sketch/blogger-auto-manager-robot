@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version="2" b:responsive="true" expr:dir="data:blog.languageDirection" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr">
+<head>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<b:include data="blog" name="all-head-content"/>
+<title><data:blog.pageTitle/></title>
+<b:skin><![CDATA[
+*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:#172033;font-family:Arial,Tahoma,sans-serif;line-height:1.7}a{color:#2563eb;text-decoration:none}.top{background:linear-gradient(135deg,#0f172a,#2563eb);color:#fff;padding:38px 18px}.wrap{max-width:1120px;margin:auto}.brand{font-size:32px;font-weight:800}.nav{background:#fff;border-bottom:1px solid #e5e7eb}.navin{max-width:1120px;margin:auto;padding:12px 18px;display:flex;gap:20px}.grid{max-width:1120px;margin:28px auto;padding:0 18px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px}.box{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:22px;box-shadow:0 8px 25px rgba(15,23,42,.06)}.side .widget{margin-bottom:20px}.footer{background:#0f172a;color:#cbd5e1;margin-top:40px;padding:30px 18px;text-align:center}@media(max-width:800px){.grid{grid-template-columns:1fr}.brand{font-size:26px}}
+]]></b:skin>
+</head>
+<body>
+<header class="top"><div class="wrap"><b:section id="header" class="header" maxwidgets="1" showaddelement="no"><b:widget id="Header1" type="Header" locked="true" title="رأس المدونة"/></b:section></div></header>
+<nav class="nav"><div class="navin"><a expr:href="data:blog.homepageUrl">الرئيسية</a></div></nav>
+<div class="grid"><main class="box"><b:section id="main" class="main" showaddelement="yes"><b:widget id="Blog1" type="Blog" locked="true" title="المقالات"/></b:section></main>
+<aside class="side"><div class="box"><b:section id="sidebar" class="sidebar" showaddelement="yes"><b:widget id="Label1" type="Label" locked="false" title="التصنيفات"/><b:widget id="BlogArchive1" type="BlogArchive" locked="false" title="الأرشيف"/></b:section></div></aside></div>
+<footer class="footer"><b:section id="footer" class="footer" showaddelement="yes"><b:widget id="Attribution1" type="Attribution" locked="true" title="الإسناد"/></b:section></footer>
+</body></html>
