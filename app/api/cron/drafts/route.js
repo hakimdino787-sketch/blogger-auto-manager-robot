@@ -3,11 +3,6 @@ import{refreshSession}from"../../../../lib/session";
 import{loadPersistentSession,savePersistentSession}from"../../../../lib/persistent-session";
 
 const topics=[
-"كيفاش تنظم وقتك فالنهار بلا تطبيقات معقدة",
-"طرق عملية باش تحمي حساباتك على الإنترنت",
-"كيفاش تنظف الهاتف وتخفف الملفات اللي ما محتاجهاش",
-"طريقة بسيطة لتنظيم الملفات والصور فالهاتف والحاسوب",
-"كيفاش تستعمل البحث على الإنترنت بطريقة أذكى",
 "أخطاء رقمية يومية كتضيع الوقت وكيفاش تتجنبها",
 "كيفاش تبني روتين أسبوعي بسيط باش تبقى منظم"
 ];
@@ -25,6 +20,7 @@ export async function GET(req){
  const blog=s.blogs?.[0];if(!blog?.id)return NextResponse.json({ok:false,error:"ما لقيتش مدونة Blogger مربوطة"},{status:503});
  const created=[],skipped=[];
  for(const topic of topics){
+  await new Promise(r=>setTimeout(r,4000));
   const a=fallback(topic);let article=a;
   if(process.env.OPENAI_API_KEY){try{const gr=await fetch(new URL("/api/generate",req.url),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({topic})});const gd=await gr.json();if(gr.ok&&gd.article?.title&&gd.article?.content_html){article={...a,...gd.article};article.content='<article dir="rtl"><img src="'+cover(topic)+'" alt="'+topic.replace(/"/g,"")+'" style="width:100%;height:auto;border-radius:18px;margin-bottom:24px"/>'+gd.article.content_html+'<hr/><p style="font-size:13px;color:#64748b">محتوى أصلي أُعد خصيصاً لـTiizkwiz.</p></article>'}}catch{}}
   const qr=await fetch(new URL("/api/quality-check",req.url),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({topic,title:article.title,content:article.content})});const qd=await qr.json().catch(()=>({}));
