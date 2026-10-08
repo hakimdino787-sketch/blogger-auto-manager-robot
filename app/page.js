@@ -7,7 +7,7 @@ function buildFallbackArticle(topic){const t=topic.trim(),cover=makeOriginalCove
 
 export default function Page(){
  const[blogs,setBlogs]=useState([]),[blogId,setBlogId]=useState(""),[posts,setPosts]=useState([]),[title,setTitle]=useState(""),[content,setContent]=useState(""),[topic,setTopic]=useState(""),[labels,setLabels]=useState(""),[status,setStatus]=useState("");
- async function loadBlogs(){const r=await fetch("/api/blogs",{cache:"no-store"}),d=await r.json();if(d.ok){setBlogs(d.blogs||[]);if(!blogId&&d.blogs?.[0]?.id)setBlogId(d.blogs[0].id)}}
+ async function loadBlogs(){await fetch("/api/auth/persist",{method:"POST"}).catch(()=>{});const r=await fetch("/api/blogs",{cache:"no-store"}),d=await r.json();if(d.ok){setBlogs(d.blogs||[]);if(!blogId&&d.blogs?.[0]?.id)setBlogId(d.blogs[0].id)}}
  async function loadPosts(id){if(!id)return;const r=await fetch("/api/posts?blogId="+encodeURIComponent(id),{cache:"no-store"}),d=await r.json();setPosts(d.items||[])}
  useEffect(()=>{loadBlogs()},[]);
  useEffect(()=>{if(blogId)loadPosts(blogId)},[blogId]);
