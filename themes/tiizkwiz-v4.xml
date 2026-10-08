@@ -79,7 +79,7 @@
     .tz-post-page{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(18px,4vw,38px);box-shadow:var(--shadow)}
     .tz-breadcrumb{font-size:12px;color:var(--muted);margin-bottom:13px}
     .tz-post-page h1{font-size:clamp(29px,5vw,46px);line-height:1.25;margin:0 0 10px;letter-spacing:-1px}
-    .tz-post-page .post-body{font-size:17px;line-height:2;margin-top:25px}
+    .tz-post-page .post-body{font-size:17px;overflow-wrap:anywhere;line-height:2;margin-top:25px}
     .tz-post-page .post-body img{border-radius:15px;margin:16px auto;display:block}
     .tz-post-page .post-body h2{font-size:25px;line-height:1.4;margin:32px 0 10px}
     .tz-post-page .post-body h3{font-size:21px;margin:25px 0 8px}
@@ -170,7 +170,7 @@
                           </b:if>
                         </a>
                         <div class="tz-hero-body">
-                          <span class="tz-kicker"><data:post.labels.first.name/></span>
+                          <span class="tz-kicker">Tiizkwiz</span>
                           <h1><a expr:href='data:post.url'><data:post.title/></a></h1>
                           <div class="tz-meta"><span><data:post.timestamp/></span><span>قراءة سهلة ومباشرة</span></div>
                         </div>
@@ -190,7 +190,7 @@
                           </b:if>
                         </a>
                         <div class="tz-post-body">
-                          <span class="tz-kicker"><data:post.labels.first.name/></span>
+                          <span class="tz-kicker">Tiizkwiz</span>
                           <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
                           <p><data:post.snippet/></p>
                         </div>
@@ -222,7 +222,7 @@
               <b:loop values='data:posts' var='post'>
                 <article class="tz-post-page">
                   <div class="tz-breadcrumb"><a expr:href='data:blog.homepageUrl'>الرئيسية</a> ← المقال</div>
-                  <span class="tz-kicker"><data:post.labels.first.name/></span>
+                  <span class="tz-kicker">Tiizkwiz</span>
                   <h1><data:post.title/></h1>
                   <div class="tz-meta"><span><data:post.timestamp/></span><span>Tiizkwiz</span></div>
                   <div class="post-body">
