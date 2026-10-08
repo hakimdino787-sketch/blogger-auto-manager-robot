@@ -27,19 +27,10 @@ async function getSession(){
 export async function GET(req){
  const x=await getSession();if(x.error)return NextResponse.json({ok:false,error:x.error},{status:503});
  const{s,blog}=x;
- const list=await fetch("https://www.googleapis.com/blogger/v3/blogs/"+encodeURIComponent(blog.id)+"/posts?maxResults=100&fetchBodies=false",{headers:{Authorization:"Bearer "+s.access_token}});
- const existing=new Set();if(list.ok){const ld=await list.json();for(const p of ld.items||[])existing.add((p.title||"").trim())}
- const created=[],skipped=[];
- for(const topic of topics){
-  const a=fallback(topic);let article=a;
-  if(existing.has(article.title)){skipped.push({title:article.title,reason:"already-exists"});continue}
-  if(process.env.OPENAI_API_KEY){try{const gr=await fetch(new URL("/api/generate",req.url),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({topic})});const gd=await gr.json();if(gr.ok&&gd.article?.title&&gd.article?.content_html){article={...a,...gd.article};article.content='<article dir="rtl"><img src="'+cover(topic)+'" alt="'+topic.replace(/"/g,"")+'" style="width:100%;height:auto;border-radius:18px;margin-bottom:24px"/>'+gd.article.content_html+'<hr/><p style="font-size:13px;color:#64748b">محتوى أصلي أُعد خصيصاً لـTiizkwiz.</p></article>'}}catch{}}
-  const qr=await fetch(new URL("/api/quality-check",req.url),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({topic,title:article.title,content:article.content})});const qd=await qr.json().catch(()=>({}));
-  const pr=await postWithRetry("https://www.googleapis.com/blogger/v3/blogs/"+encodeURIComponent(blog.id)+"/posts?isDraft=true",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+s.access_token},body:JSON.stringify({title:article.title,content:article.content,labels:article.labels||[]})});
-  if(pr.ok){created.push({title:article.title,score:qd.score??null,qualityOk:!!qd.ok})}else{created.push({title:article.title,error:await pr.text()})}
- }
- const failed=created.filter(x=>x.error);
- return NextResponse.json({ok:failed.length===0,blog:blog.name||blog.id,created,skipped,generatedAt:new Date().toISOString()},{status:failed.length?502:200});
+ const list=await fetch("https://www.googleapis.com/blogger/v3/blogs/"+encodeURIComponent(blog.id)+"/posts?status=draft&maxResults=100&fetchBodies=false",{headers:{Authorization:"Bearer "+s.access_token}});
+ if(!list.ok)return NextResponse.json({ok:false,error:"تعذر جلب المسودات: "+await list.text()},{status:list.status});
+ const data=await list.json();
+ return NextResponse.json({ok:true,blog:blog.name||blog.id,draftCount:(data.items||[]).length,drafts:(data.items||[]).map(p=>({id:p.id,title:p.title,updated:p.updated}))});
 }
 
 export async function POST(req){
@@ -62,4 +53,21 @@ export async function POST(req){
   else failed.push({id:p.id,title,error:await put.text()});
  }
  return NextResponse.json({ok:failed.length===0,mode:"enhance-existing-drafts",blog:blog.name||blog.id,found:drafts.length,updated,failed,published:0,generatedAt:new Date().toISOString()},{status:failed.length?502:200});
+}
+export async function DELETE(req){
+ const x=await getSession();if(x.error)return NextResponse.json({ok:false,error:x.error},{status:503});
+ const{s,blog}=x;
+ const targets=new Set([
+ "أخطاء رقمية يومية كتضيع الوقت وكيفاش تتجنبها — خطوات عملية باش تبدا",
+ "كيفاش تبني روتين أسبوعي بسيط باش تبقى منظم — خطوات عملية باش تبدا"
+ ]);
+ const list=await fetch("https://www.googleapis.com/blogger/v3/blogs/"+encodeURIComponent(blog.id)+"/posts?status=draft&maxResults=100&fetchBodies=false",{headers:{Authorization:"Bearer "+s.access_token}});
+ if(!list.ok)return NextResponse.json({ok:false,error:await list.text()},{status:list.status});
+ const data=await list.json(),removed=[],failed=[];
+ for(const p of data.items||[]){
+  if(!targets.has((p.title||"").trim()))continue;
+  const dr=await postWithRetry("https://www.googleapis.com/blogger/v3/blogs/"+encodeURIComponent(blog.id)+"/posts/"+encodeURIComponent(p.id),{method:"DELETE",headers:{Authorization:"Bearer "+s.access_token}});
+  if(dr.ok)removed.push({id:p.id,title:p.title});else failed.push({id:p.id,title:p.title,error:await dr.text()});
+ }
+ return NextResponse.json({ok:failed.length===0,removed,failed});
 }
