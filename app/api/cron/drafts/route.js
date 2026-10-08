@@ -25,6 +25,14 @@ async function getSession(){
 }
 
 export async function GET(req){
+ const mode=new URL(req.url).searchParams.get("mode");
+ if(mode==="enhance")return enhance(req);
+ if(mode==="cleanup"){
+  const x=await getSession();if(x.error)return NextResponse.json({ok:false,error:x.error},{status:503});
+  const{s,blog}=x;const ids=["5517399296669411438","7966330942409206794","3191057800857075954","967245372384299245"];const removed=[],failed=[];
+  for(const id of ids){const dr=await postWithRetry("https://www.googleapis.com/blogger/v3/blogs/"+encodeURIComponent(blog.id)+"/posts/"+id,{method:"DELETE",headers:{Authorization:"Bearer "+s.access_token}});if(dr.ok)removed.push(id);else failed.push({id,error:await dr.text()})}
+  return NextResponse.json({ok:failed.length===0,removed,failed});
+ }
  if(new URL(req.url).searchParams.get("enhance")==="1")return enhance(req);
  const x=await getSession();if(x.error)return NextResponse.json({ok:false,error:x.error},{status:503});
  const{s,blog}=x;
