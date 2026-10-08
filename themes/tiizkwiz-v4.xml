@@ -57,7 +57,7 @@
     .tz-meta{color:var(--muted);font-size:13px;display:flex;gap:12px;flex-wrap:wrap}
     .tz-section-title{display:flex;align-items:center;justify-content:space-between;margin:30px 0 14px}
     .tz-section-title h2{margin:0;font-size:22px}
-    .tz-section-title a{color:var(--brand);font-size:13px}
+    .tz-section-title a{color:var(--brand);font-size:13px}.tz-section{margin-top:28px}.tz-popular{display:grid;gap:10px}.tz-popular a{display:block;padding:11px;border:1px solid var(--line);border-radius:12px;background:#fff}.tz-popular strong{font-size:14px;line-height:1.45}
     .tz-posts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
     .tz-post{overflow:hidden}
     .tz-post-thumb{aspect-ratio:16/9;background:#edf1f7;overflow:hidden}
@@ -92,14 +92,14 @@
     .tz-article .tz-summary{background:#fff7ed;border-color:#fed7aa}
     .tz-article figure.tz-hero{margin:20px 0}
     .tz-article figure.tz-hero img{width:100%;border-radius:16px}
-    .tz-share{display:flex;gap:8px;flex-wrap:wrap;margin-top:25px;padding-top:18px;border-top:1px solid var(--line)}
+    .tz-related{margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}.tz-related h2,.tz-comments h2{font-size:20px;margin:0 0 12px}.tz-related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.tz-related-grid a{display:block;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;font-size:13px}.tz-comments{margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}.tz-share{display:flex;gap:8px;flex-wrap:wrap;margin-top:25px;padding-top:18px;border-top:1px solid var(--line)}
     .tz-share a{padding:8px 12px;border-radius:9px;background:#f2f4f7;font-size:13px}
     .tz-footer{background:var(--dark);color:#cbd5e1;margin-top:0}
     .tz-footer-main{padding:40px 0 25px;display:grid;grid-template-columns:1.5fr repeat(2,1fr);gap:35px}
     .tz-footer h3{color:#fff;margin:0 0 10px}
     .tz-footer p{font-size:13px;color:#94a3b8;margin:0}
     .tz-footer a{display:block;font-size:13px;color:#cbd5e1;margin:6px 0}
-    .tz-footer a:hover{color:#fff}
+    .tz-footer a:hover{color:#fff}.tz-social{display:flex;gap:8px;flex-wrap:wrap}.tz-social a{border:1px solid rgba(255,255,255,.12);padding:6px 9px;border-radius:8px}
     .tz-copy{border-top:1px solid rgba(255,255,255,.1);padding:15px 0;font-size:12px;color:#94a3b8;text-align:center}
     .tz-back{position:fixed;left:16px;bottom:16px;width:42px;height:42px;border:0;border-radius:12px;background:var(--brand);color:#fff;cursor:pointer;box-shadow:var(--shadow);display:none}
     .item-control{display:none!important}
@@ -198,7 +198,7 @@
                     </b:loop>
                   </div>
 
-                  <div class="tz-newsletter">
+                  <section class="tz-section"><div class="tz-section-title"><h2>الأكثر قراءة</h2></div><div class="tz-popular"><b:loop values='data:posts' var='popularPost'><a expr:href='data:popularPost.url'><strong><data:popularPost.title/></strong></a></b:loop></div></section><div class="tz-newsletter">
                     <h2>خليك قريب من الجديد</h2>
                     <p>تابع أحدث الأدوات والشروحات والأفكار الرقمية التي تستحق التجربة.</p>
                   </div>
@@ -237,14 +237,12 @@
                     <a expr:href='"https://twitter.com/intent/tweet?url=" + data:post.url + "&amp;text=" + data:post.title' target="_blank" rel="noopener">X</a>
                     <a expr:href='"https://wa.me/?text=" + data:post.title + "%20" + data:post.url' target="_blank" rel="noopener">WhatsApp</a>
                   </div>
-                  <b:if cond='data:blog.pageType == "item"'>
-                    <b:include data='post' name='postQuickEdit'/>
-                  </b:if>
+                  <section class="tz-related"><h2>مقالات قد تهمك</h2><div class="tz-related-grid"><a expr:href='data:blog.homepageUrl'>شاهد أحدث المقالات</a><a expr:href='data:blog.homepageUrl + "search/label/التقنية"'>المزيد في التقنية</a><a expr:href='data:blog.homepageUrl + "search/label/الذكاء الاصطناعي"'>المزيد في الذكاء الاصطناعي</a></div></section><section class="tz-comments"><h2>التعليقات</h2><b:include data='post' name='comments'/></section><b:include data='post' name='postQuickEdit'/>
                 </article>
               </b:loop>
             </b:if>
           </b:includable>
-          <b:includable id="postQuickEdit" var="post"></b:includable>
+          <b:includable id="comments" var="post"><div id="comments"><data:post.numComments/> تعليق</div></b:includable><b:includable id="postQuickEdit" var="post"></b:includable>
         </b:widget>
       </b:section>
     </div>
@@ -266,7 +264,7 @@
         <h3>القانون</h3>
         <a expr:href='data:blog.homepageUrl + "p/privacy.html"'>سياسة الخصوصية</a>
         <a expr:href='data:blog.homepageUrl + "p/terms.html"'>الشروط والأحكام</a>
-      </div>
+      </div><div><h3>تابعنا</h3><div class="tz-social"><a href="#" rel="nofollow">YouTube</a><a href="#" rel="nofollow">Facebook</a><a href="#" rel="nofollow">TikTok</a></div></div>
     </div>
     <div class="tz-copy">© <data:blog.title/> — جميع الحقوق محفوظة</div>
   </footer>
