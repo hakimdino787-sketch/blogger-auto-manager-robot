@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version="2"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://www.google.com/2005/gml/b"
+      xmlns:data="http://www.google.com/2005/gml/data"
+      xmlns:expr="http://www.google.com/2005/gml/expr"
+      dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title><data:blog.pageTitle/></title>
+  <meta expr:content='data:blog.metaDescription' name="description"/>
+  <meta expr:content='data:blog.canonicalUrl' rel="canonical"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta expr:content='data:blog.pageTitle' property="og:title"/>
+  <meta expr:content='data:blog.metaDescription' property="og:description"/>
+  <meta expr:content='data:blog.canonicalUrl' property="og:url"/>
+  <meta content="Tiizkwiz" property="og:site_name"/>
+  <b:skin><![CDATA[
+:root{--ink:#101828;--muted:#667085;--brand:#635bff;--brand2:#7c3aed;--bg:#f7f8fc;--card:#fff;--line:#e8eaf0;--dark:#111827;--radius:22px;--max:1180px;--shadow:0 12px 35px rgba(16,24,40,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.8}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto}.wrap{width:min(calc(100% - 28px),var(--max));margin:auto}
+.top{background:#0b1020;color:#cbd5e1;font-size:12px}.top .wrap{display:flex;justify-content:space-between;padding:7px 0}
+.header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.head{min-height:76px;display:flex;align-items:center;gap:22px}.logo{display:flex;align-items:center;gap:10px;min-width:175px}.logo-mark{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;display:grid;place-items:center;font-weight:900;font-size:21px;box-shadow:0 9px 22px rgba(99,91,255,.22)}.logo strong{font-size:21px;letter-spacing:-.5px}.logo small{display:block;font-size:10px;color:var(--muted);line-height:1.2}.nav{display:flex;align-items:center;gap:3px;flex:1}.nav a{padding:9px 10px;border-radius:10px;font-size:13px;color:#344054}.nav a:hover{background:#f0efff;color:var(--brand)}.search{display:flex;background:#f5f6fa;border:1px solid var(--line);border-radius:12px;overflow:hidden}.search input{width:125px;border:0;background:transparent;outline:0;padding:9px;font:inherit;font-size:12px}.search button{border:0;background:var(--ink);color:#fff;padding:0 12px;cursor:pointer}
+.main{padding:30px 0 60px}.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px}.hero{display:grid;grid-template-columns:1.05fr .95fr;min-height:390px;overflow:hidden;background:var(--dark);color:#fff;border-radius:28px;box-shadow:var(--shadow);margin-bottom:25px}.hero-media{min-height:100%;background:linear-gradient(135deg,#25204d,#171b2d);overflow:hidden}.hero-media img{width:100%;height:100%;object-fit:cover;display:block}.hero-copy{padding:38px;display:flex;flex-direction:column;justify-content:center}.eyebrow{display:inline-flex;align-self:flex-start;padding:5px 10px;border-radius:99px;background:#ecebff;color:var(--brand);font-size:11px;font-weight:700}.hero .eyebrow{background:rgba(255,255,255,.1);color:#dcd9ff}.hero h1{font-size:clamp(28px,4vw,45px);line-height:1.25;margin:15px 0 12px;letter-spacing:-1px}.meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:12px}.hero .meta{color:#b9c0d0}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:28px 0 14px}.section-head h2{font-size:22px;margin:0}.section-head a{font-size:12px;color:var(--brand)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 5px 18px rgba(16,24,40,.035);transition:.2s}.card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}.thumb{aspect-ratio:16/9;background:#eef0f5;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}.card:hover .thumb img{transform:scale(1.03)}.card-body{padding:16px}.card h3{font-size:17px;line-height:1.45;margin:8px 0}.card p{font-size:12px;color:var(--muted);margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.side{position:sticky;top:95px}.side-box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:15px}.side-box h3{font-size:16px;margin:0 0 12px}.cats{display:grid;gap:7px}.cats a{padding:9px 10px;background:#f7f8fb;border-radius:10px;font-size:12px;color:#475467}.cats a:hover{background:#efedff;color:var(--brand)}.ad{min-height:120px;border:1px dashed #cbd5e1;border-radius:15px;display:grid;place-items:center;color:#98a2b3;font-size:11px}
+.post-page{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(18px,4vw,42px);box-shadow:var(--shadow)}.crumb{font-size:11px;color:var(--muted);margin-bottom:12px}.post-page h1{font-size:clamp(29px,5vw,48px);line-height:1.25;margin:10px 0}.post-body{font-size:17px;line-height:2;margin-top:25px;overflow-wrap:anywhere}.post-body img{border-radius:16px;display:block;margin:22px auto}.post-body h2{font-size:26px;line-height:1.4;margin:34px 0 12px}.post-body h3{font-size:21px;margin:27px 0 9px}.post-body blockquote{margin:22px 0;padding:15px 18px;border-right:4px solid var(--brand);background:#f6f5ff;border-radius:12px}.share{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:30px;padding-top:18px;align-items:center}.share a{padding:8px 12px;background:#f3f4f6;border-radius:10px;font-size:12px}.related{border-top:1px solid var(--line);margin-top:28px;padding-top:22px}.related h2{font-size:20px;margin:0 0 12px}.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.related-grid a{border:1px solid var(--line);border-radius:12px;padding:12px;font-size:12px;background:#fff}
+.footer{background:#0b1020;color:#cbd5e1}.footer-main{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:28px;padding:42px 0 26px}.footer h3{color:#fff;font-size:16px;margin:0 0 10px}.footer p,.footer a{font-size:12px;color:#94a3b8}.footer a{display:block;margin:6px 0}.footer a:hover{color:#fff}.copy{border-top:1px solid rgba(255,255,255,.1);padding:14px 0;text-align:center;font-size:11px;color:#64748b}
+.up{position:fixed;left:16px;bottom:16px;width:42px;height:42px;border:0;border-radius:13px;background:var(--brand);color:#fff;display:none;place-items:center;cursor:pointer;box-shadow:var(--shadow)}
+.item-control,.feed-links,.post-footer{display:none!important}
+@media(max-width:980px){.nav{display:none}.grid{grid-template-columns:1fr}.side{display:none}.hero{grid-template-columns:1fr}.hero-media{min-height:260px}.footer-main{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.top{display:none}.wrap{width:min(calc(100% - 20px),var(--max))}.head{min-height:65px}.logo{min-width:auto}.logo small{display:none}.search input{width:80px}.main{padding-top:15px}.hero-copy{padding:22px}.hero h1{font-size:29px}.cards{grid-template-columns:1fr}.post-page{padding:17px;border-radius:17px}.post-body{font-size:16px}.related-grid{grid-template-columns:1fr}.footer-main{grid-template-columns:1fr;padding:30px 0 20px}}
+  ]]></b:skin>
+</head>
+<body>
+  <div class="top"><div class="wrap"><span>Tiizkwiz</span><span>تقنية • ذكاء اصطناعي • أدوات • ربح رقمي</span></div></div>
+  <header class="header"><div class="wrap head">
+    <a class="logo" expr:href='data:blog.homepageUrl'><span class="logo-mark">T</span><span><strong>Tiizkwiz</strong><small>أفكار رقمية بالعربية</small></span></a>
+    <nav class="nav">
+      <a expr:href='data:blog.homepageUrl'>الرئيسية</a>
+      <a expr:href='data:blog.homepageUrl + "search/label/التقنية"'>التقنية</a>
+      <a expr:href='data:blog.homepageUrl + "search/label/الذكاء الاصطناعي"'>الذكاء الاصطناعي</a>
+      <a expr:href='data:blog.homepageUrl + "search/label/الأدوات"'>الأدوات</a>
+      <a expr:href='data:blog.homepageUrl + "search/label/الربح والعمل"'>الربح والعمل</a>
+      <a expr:href='data:blog.homepageUrl + "search/label/شروحات"'>شروحات</a>
+    </nav>
+    <form class="search" expr:action='data:blog.homepageUrl + "search"' method="get"><input name="q" placeholder="بحث..." type="search"/><button type="submit">⌕</button></form>
+  </div></header>
+
+  <main class="main"><div class="wrap">
+    <b:section id="main" maxwidgets="1" showaddelement="no">
+      <b:widget id="Blog1" locked="true" title="المقالات" type="Blog" version="2" visible="true">
+        <b:includable id="main">
+          <b:if cond='data:view.isHomepage'>
+            <b:loop values='data:posts' var='post'>
+              <b:if cond='data:post.isFirstPost'>
+                <article class="hero">
+                  <a class="hero-media" expr:href='data:post.url'><b:if cond='data:post.featuredImage'><img expr:src='data:post.featuredImage' expr:alt='data:post.title'/><b:else/><div class="ad">Tiizkwiz</div></b:if></a>
+                  <div class="hero-copy"><span class="eyebrow">مقال مميز</span><h1><a expr:href='data:post.url'><data:post.title/></a></h1><div class="meta"><span><data:post.timestamp/></span><span>قراءة سهلة ومباشرة</span></div></div>
+                </article>
+              </b:if>
+            </b:loop>
+            <div class="grid">
+              <div>
+                <div class="section-head"><h2>أحدث المقالات</h2><a expr:href='data:blog.homepageUrl'>عرض الكل</a></div>
+                <div class="cards">
+                  <b:loop values='data:posts' var='post'>
+                    <article class="card">
+                      <a class="thumb" expr:href='data:post.url'><b:if cond='data:post.featuredImage'><img expr:src='data:post.featuredImage' expr:alt='data:post.title'/><b:else/><div class="ad">Tiizkwiz</div></b:if></a>
+                      <div class="card-body"><span class="eyebrow">Tiizkwiz</span><h3><a expr:href='data:post.url'><data:post.title/></a></h3><p><data:post.snippet/></p><div class="meta"><span><data:post.timestamp/></span></div></div>
+                    </article>
+                  </b:loop>
+                </div>
+              </div>
+              <aside class="side">
+                <div class="side-box"><h3>استكشف Tiizkwiz</h3><div class="cats">
+                  <a expr:href='data:blog.homepageUrl + "search/label/التقنية"'>التقنية</a>
+                  <a expr:href='data:blog.homepageUrl + "search/label/الذكاء الاصطناعي"'>الذكاء الاصطناعي</a>
+                  <a expr:href='data:blog.homepageUrl + "search/label/الأدوات"'>الأدوات</a>
+                  <a expr:href='data:blog.homepageUrl + "search/label/الربح والعمل"'>الربح والعمل</a>
+                  <a expr:href='data:blog.homepageUrl + "search/label/شروحات"'>شروحات</a>
+                </div></div>
+                <div class="ad">مساحة إعلانية</div>
+              </aside>
+            </div>
+          <b:else/>
+            <b:loop values='data:posts' var='post'>
+              <article class="post-page">
+                <div class="crumb"><a expr:href='data:blog.homepageUrl'>الرئيسية</a> ← المقال</div>
+                <span class="eyebrow">Tiizkwiz</span>
+                <h1><data:post.title/></h1>
+                <div class="meta"><span><data:post.timestamp/></span><span>Tiizkwiz</span></div>
+                <div class="post-body"><data:post.body/></div>
+                <div class="share"><span>شارك:</span>
+                  <a expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url' target="_blank" rel="noopener">Facebook</a>
+                  <a expr:href='&quot;https://wa.me/?text=&quot; + data:post.title + &quot;%20&quot; + data:post.url' target="_blank" rel="noopener">WhatsApp</a>
+                  <a expr:href='&quot;https://twitter.com/intent/tweet?url=&quot; + data:post.url' target="_blank" rel="noopener">X</a>
+                </div>
+                <section class="related"><h2>مقالات قد تهمك</h2><div class="related-grid">
+                  <a expr:href='data:blog.homepageUrl'>أحدث المقالات</a>
+                  <a expr:href='data:blog.homepageUrl + "search/label/التقنية"'>المزيد في التقنية</a>
+                  <a expr:href='data:blog.homepageUrl + "search/label/الذكاء الاصطناعي"'>المزيد في الذكاء الاصطناعي</a>
+                </div></section>
+                <b:include data='post' name='comments'/>
+              </article>
+            </b:loop>
+          </b:if>
+        </b:includable>
+        <b:includable id="comments" var="post"><div style="margin-top:28px;border-top:1px solid #e8eaf0;padding-top:20px"><h2 style="font-size:20px">التعليقات</h2><data:post.numComments/> تعليق</div></b:includable>
+      </b:widget>
+    </b:section>
+  </div></main>
+
+  <footer class="footer"><div class="wrap footer-main">
+    <div><h3>Tiizkwiz</h3><p>مجلة عربية رقمية تقدم محتوى عملياً حول التقنية والذكاء الاصطناعي والأدوات والعمل والربح الرقمي.</p></div>
+    <div><h3>الموقع</h3><a expr:href='data:blog.homepageUrl'>الرئيسية</a><a expr:href='data:blog.homepageUrl + "p/about.html"'>من نحن</a></div>
+    <div><h3>المساعدة</h3><a expr:href='data:blog.homepageUrl + "p/contact.html"'>اتصل بنا</a><a expr:href='data:blog.homepageUrl + "p/privacy.html"'>الخصوصية</a></div>
+    <div><h3>قانوني</h3><a expr:href='data:blog.homepageUrl + "p/terms.html"'>الشروط والأحكام</a><a expr:href='data:blog.homepageUrl + "p/disclaimer.html"'>إخلاء المسؤولية</a></div>
+  </div><div class="copy">© <data:blog.title/> — جميع الحقوق محفوظة</div></footer>
+  <button class="up" id="up" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="للأعلى">↑</button>
+  <script>(function(){var x=document.getElementById('up');window.addEventListener('scroll',function(){if(x)x.style.display=scrollY&gt;450?'grid':'none'})})();</script>
+</body></html>
