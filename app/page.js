@@ -25,6 +25,7 @@ export default function Page(){
  async function createPost(publish){
   if(!blogId||!title.trim()||!content.trim()){setStatus("⚠️ خاص العنوان والمحتوى");return}
   setStatus(publish?"⏳ كننشر...":"⏳ كنحفظ كمسودة...");
+  if(publish){const qr=await fetch("/api/quality-check",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({topic,title,content})}),qd=await qr.json();if(!qr.ok||!qd.publishable){setStatus("🛡️ توقف النشر: فحص الجودة أعطى "+(qd.score??0)+"/100. "+(qd.issues||["خاص المقال يتراجع قبل النشر."]).join(" • "));return}}
   const r=await fetch("/api/posts",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({blogId,title,content,draft:!publish,labels:labels.split(",").map(x=>x.trim()).filter(Boolean)})}),d=await r.json();
   if(!r.ok){setStatus("❌ "+(d.error?.message||d.error||"وقع خطأ"));return}
   setStatus(publish?"🚀 تنشر بنجاح!":"💾 تسجل كمسودة");setTitle("");setContent("");loadPosts(blogId)
