@@ -24,7 +24,7 @@ async function getSession(){
  return{s,blog}
 }
 
-export async function GET(req){
+export async function GET(req){\n if(new URL(req.url).searchParams.get("enhance")==="1")return enhance(req);
  const x=await getSession();if(x.error)return NextResponse.json({ok:false,error:x.error},{status:503});
  const{s,blog}=x;
  const list=await fetch("https://www.googleapis.com/blogger/v3/blogs/"+encodeURIComponent(blog.id)+"/posts?status=draft&maxResults=100&fetchBodies=false",{headers:{Authorization:"Bearer "+s.access_token}});
@@ -33,7 +33,7 @@ export async function GET(req){
  return NextResponse.json({ok:true,blog:blog.name||blog.id,draftCount:(data.items||[]).length,drafts:(data.items||[]).map(p=>({id:p.id,title:p.title,updated:p.updated}))});
 }
 
-export async function POST(req){
+async function enhance(req){
  const x=await getSession();if(x.error)return NextResponse.json({ok:false,error:x.error},{status:503});
  const{s,blog}=x;
  const list=await fetch("https://www.googleapis.com/blogger/v3/blogs/"+encodeURIComponent(blog.id)+"/posts?status=draft&maxResults=100&fetchBodies=true",{headers:{Authorization:"Bearer "+s.access_token}});
@@ -71,3 +71,4 @@ export async function DELETE(req){
  }
  return NextResponse.json({ok:failed.length===0,removed,failed});
 }
+\nexport async function POST(req){return enhance(req);}\n
