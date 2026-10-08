@@ -1,18 +1,31 @@
 import{NextResponse}from"next/server";
 import{getValidSession,refreshSession,setSessionCookie}from"../../../lib/session";
+import{loadPersistentSession}from"../../../lib/persistent-session";
 
 async function bloggerRequest(session,url,options={}){
   let current=session;
   let r=await fetch(url,{...options,headers:{...(options.headers||{}),Authorization:`Bearer ${current.access_token}`}});
-  if(r.status===401&&current.refresh_token){
+  let refreshed=false;
+  if((r.status===401||r.status===403)&&current.refresh_token){
     const rr=await refreshSession(current);
     if(rr.ok){
       current=rr.session;
       r=await fetch(url,{...options,headers:{...(options.headers||{}),Authorization:`Bearer ${current.access_token}`}});
-      return{r,session:current,refreshed:true};
+      refreshed=true;
     }
   }
-  return{r,session:current,refreshed:false};
+  if(r.status===403){
+    const persistent=await loadPersistentSession();
+    if(persistent?.refresh_token&&persistent.refresh_token!==current.refresh_token){
+      const rr=await refreshSession(persistent);
+      if(rr.ok){
+        current=rr.session;
+        r=await fetch(url,{...options,headers:{...(options.headers||{}),Authorization:`Bearer ${current.access_token}`}});
+        refreshed=true;
+      }
+    }
+  }
+  return{r,session:current,refreshed};
 }
 
 export async function GET(req){
