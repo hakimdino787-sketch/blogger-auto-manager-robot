@@ -64,8 +64,8 @@ async function generateDaily(req){
  if(drafts.error||live.error)return NextResponse.json({ok:false,error:"تعذر فحص المسودات والمنشورات الحالية؛ أوقفت التوليد لمنع التكرار.",details:drafts.error||live.error},{status:502});
  const existing=[...drafts.items,...live.items],markers=new Set(existing.flatMap(p=>Array.isArray(p.labels)?p.labels:[]));
  const created=[],skipped=[],failed=[];
- for(let i=0;i<DAILY_TOPICS.length;i++){
-  const topic=DAILY_TOPICS[i],marker="tiizkwiz-auto-"+day+"-"+(i+1);
+ for(let i=0;i<3;i++){
+  const topic=TOPIC_POOL[((Number(day)%7)*3+i)%TOPIC_POOL.length],marker="tiizkwiz-auto-"+day+"-"+(i+1);
   if(markers.has(marker)){skipped.push({slot:i+1,topic,reason:"سبق إنشاء هذه المسودة في هذا اليوم"});continue}
   try{
    const gr=await fetch(new URL("/api/generate",req.url),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({topic})});
