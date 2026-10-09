@@ -20,10 +20,10 @@ const DAILY_TOPICS=[
 ];
 function imageFor(title){const hit=IMAGE_MAP.find(x=>String(title).includes(x.match));return hit?.url||DEFAULT_IMAGE}
 function authorizedForEnhancement(req){const secret=process.env.CRON_SECRET;if(!secret)return false;return req.headers.get("authorization")===`Bearer ${secret}`}
-function hasRealImage(body){return /<img\\b[^>]*\\bsrc\\s*=\\s*["']https?:\\/\\//i.test(body||"")}
-function removeOldFakeImage(body){return String(body||"").replace(/<img\\b[^>]*\\bsrc\\s*=\\s*["']data:image\\/svg\\+xml[^"']*["'][^>]*\\/?>/gi,"")}
+function hasRealImage(body){return /<img\b[^>]*\bsrc\s*=\s*["']https?:\/\//i.test(body||"")}
+function removeOldFakeImage(body){return String(body||"").replace(/<img\b[^>]*\bsrc\s*=\s*["']data:image\/svg\+xml[^"']*["'][^>]*\/?>/gi,"")}
 function escapeHtml(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function safeHtml(s=""){return String(s).replace(/<\\/?(script|iframe|object|embed|form)\\b[^>]*>/gi,"").replace(/\\s+on[a-z]+\\s*=\\s*(["']).*?\\1/gi,"").replace(/javascript:/gi,"")}
+function safeHtml(s=""){return String(s).replace(/<\/?(script|iframe|object|embed|form)\b[^>]*>/gi,"").replace(/\s+on[a-z]+\s*=\s*(["']).*?\1/gi,"").replace(/javascript:/gi,"")}
 function moroccoDate(){const p=new Intl.DateTimeFormat("en-CA",{timeZone:"Africa/Casablanca",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());const v=Object.fromEntries(p.map(x=>[x.type,x.value]));return v.year+v.month+v.day}
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 async function postWithRetry(url,opts){for(let i=0;i<5;i++){const pr=await fetch(url,opts);if(pr.ok)return pr;if(pr.status!==429&&pr.status!==403)return pr;await sleep(Math.min(32000,2000*(2**i)+Math.floor(Math.random()*1000)))}return fetch(url,opts)}
