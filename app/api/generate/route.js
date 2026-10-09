@@ -34,14 +34,14 @@ export async function POST(req){
     const{topic}=await req.json();
     if(!topic?.trim())return NextResponse.json({ok:false,error:"الموضوع مطلوب"},{status:400});
     const key=process.env.OPENAI_API_KEY;
-    if(!key)return NextResponse.json({ok:true,article:localArticle(topic),source:"local"});
+    if(!key)return NextResponse.json({ok:false,error:"مولّد المقالات غير مهيأ: خاص إعداد OPENAI_API_KEY في Vercel قبل التوليد."},{status:503});
     const model=process.env.OPENAI_MODEL||"gpt-5-mini";
     const r=await fetch("https://api.openai.com/v1/chat/completions",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+key},body:JSON.stringify({model,messages:[{role:"system",content:SYSTEM},{role:"user",content:"الموضوع: "+topic.trim()+"\\n\\nاكتب مقالاً مفيداً ومتماسكاً، بزاوية واضحة وتجربة قراءة مريحة. لا تعتمد على نسخ أو إعادة صياغة مصدر بعينه."}],temperature:.7})});
     const data=await r.json();
-    if(!r.ok)return NextResponse.json({ok:true,article:localArticle(topic),source:"local"});
+    if(!r.ok)return NextResponse.json({ok:false,error:"فشل توليد المقال عبر الخدمة الخارجية. لم يتم إنشاء مقال بديل ضعيف.",providerStatus:r.status},{status:502});
     const raw=data?.choices?.[0]?.message?.content||"";
     const article=cleanJson(raw);
     if(!article.title||!article.content_html||!Array.isArray(article.labels))throw new Error("استجابة المولد غير مكتملة");
     return NextResponse.json({ok:true,article,source:"openai"});
-  }catch(e){return NextResponse.json({ok:true,article:localArticle("موضوع مفيد لـTiizkwiz"),source:"local"})}
+  }catch(e){return NextResponse.json({ok:false,error:"تعذر توليد مقال موثوق. لم يتم إنشاء محتوى بديل.",details:process.env.NODE_ENV==="development"?String(e?.message||e):undefined},{status:502})}
 }
