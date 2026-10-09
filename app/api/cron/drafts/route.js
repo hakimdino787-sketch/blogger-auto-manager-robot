@@ -3,6 +3,23 @@ import{refreshSession}from"../../../../lib/session";
 import{loadPersistentSession,savePersistentSession}from"../../../../lib/persistent-session";
 
 const IMAGE_MAP=[
+{match:"التحقق بخطوتين",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"تفريغ مساحة",url:"https://gen.krea.ai/images/ebe36f8d-7f44-430b-a82f-1b4d69f7ffe0.png"},
+{match:"تنظم ملفاتك",url:"https://gen.krea.ai/images/92fc3ca8-2238-4e48-b228-a4cead15c48d.png"},
+{match:"بريدك الإلكتروني",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"العروض الوهمية",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"الواي فاي",url:"https://gen.krea.ai/images/74d0de0e-468e-4bb3-901e-3802519a1a59.png"},
+{match:"الخصوصية",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"واتساب",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"الموقع الإلكتروني آمن",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"التطبيقات",url:"https://gen.krea.ai/images/ebe36f8d-7f44-430b-a82f-1b4d69f7ffe0.png"},
+{match:"المتصفح",url:"https://gen.krea.ai/images/74d0de0e-468e-4bb3-901e-3802519a1a59.png"},
+{match:"تشارك الملفات",url:"https://gen.krea.ai/images/92fc3ca8-2238-4e48-b228-a4cead15c48d.png"},
+{match:"الدعم التقني المزيفة",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"الصور المحذوفة",url:"https://gen.krea.ai/images/92fc3ca8-2238-4e48-b228-a4cead15c48d.png"},
+{match:"بطارية الهاتف",url:"https://gen.krea.ai/images/ebe36f8d-7f44-430b-a82f-1b4d69f7ffe0.png"},
+{match:"صلاحيات التطبيقات",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"روتين أسبوعي",url:"https://gen.krea.ai/images/28c0027f-3108-428f-939d-56b9f9dad970.png"},
 {match:"الروابط المشبوهة",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
 {match:"نسخة احتياطية",url:"https://gen.krea.ai/images/92fc3ca8-2238-4e48-b228-a4cead15c48d.png"},
 {match:"كلمات مرور",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
@@ -13,10 +30,28 @@ const IMAGE_MAP=[
 {match:"تنظف الهاتف",url:"https://gen.krea.ai/images/ebe36f8d-7f44-430b-a82f-1b4d69f7ffe0.png"}
 ];
 const DEFAULT_IMAGE="https://gen.krea.ai/images/66052f54-8e38-4f82-bb16-4664ed5d4128.png";
-const DAILY_TOPICS=[
+const TOPIC_POOL=[
 "كيف تتحقق من الروابط المشبوهة قبل فتحها وتحمي حساباتك",
 "كيف تدير نسخة احتياطية لصور الهاتف وتسترجع ملفاتك بأمان",
-"خطوات حماية حساباتك بكلمات مرور قوية والتحقق بخطوتين"
+"كيف تختار كلمة مرور قوية ولا تعيد استعمالها في حسابات مختلفة",
+"كيف تفعّل التحقق بخطوتين لحماية حساباتك المهمة",
+"طرق آمنة لتفريغ مساحة الهاتف دون حذف الصور المهمة",
+"كيف تنظم ملفاتك وصورك الرقمية لتجدها بسرعة",
+"خطوات حماية بريدك الإلكتروني من التصيد ومحاولات الدخول",
+"كيف تميّز العروض الوهمية والروابط الاحتيالية على الإنترنت",
+"مخاطر شبكات الواي فاي العامة وكيف تتصفح بأمان",
+"إعدادات خصوصية مهمة يجب مراجعتها في تطبيقات التواصل",
+"كيف تحمي حساب واتساب وتستعيده إذا فقدت الوصول إليه",
+"أفضل طريقة عملية لنسخ ملفاتك المهمة احتياطياً",
+"كيف تتأكد من أن الموقع الإلكتروني آمن قبل إدخال بياناتك",
+"خطوات بسيطة لتقليل التطبيقات التي تجمع بياناتك الشخصية",
+"كيف تحدّث الهاتف والمتصفح لتقليل مخاطر الاختراق",
+"كيف تشارك الملفات والصور مع الآخرين بطريقة آمنة",
+"علامات رسائل الدعم التقني المزيفة وكيف تتعامل معها",
+"كيف تسترجع الصور المحذوفة وتمنع فقدانها مستقبلاً",
+"نصائح عملية لتحسين عمر بطارية الهاتف دون تطبيقات مشبوهة",
+"كيف تراجع صلاحيات التطبيقات وتحذف الوصول غير الضروري",
+"طريقة إعداد روتين أسبوعي بسيط لحماية أجهزتك وحساباتك"
 ];
 function imageFor(title){const hit=IMAGE_MAP.find(x=>String(title).includes(x.match));return hit?.url||DEFAULT_IMAGE}
 function authorizedForEnhancement(req){const secret=process.env.CRON_SECRET;if(!secret)return false;return req.headers.get("authorization")===`Bearer ${secret}`}
@@ -46,8 +81,8 @@ async function generateDaily(req){
  if(drafts.error||live.error)return NextResponse.json({ok:false,error:"تعذر فحص المسودات والمنشورات الحالية؛ أوقفت التوليد لمنع التكرار.",details:drafts.error||live.error},{status:502});
  const existing=[...drafts.items,...live.items],markers=new Set(existing.flatMap(p=>Array.isArray(p.labels)?p.labels:[]));
  const created=[],skipped=[],failed=[];
- for(let i=0;i<DAILY_TOPICS.length;i++){
-  const topic=DAILY_TOPICS[i],marker="tiizkwiz-auto-"+day+"-"+(i+1);
+ for(let i=0;i<3;i++){
+  const topic=TOPIC_POOL[((Number(day)%7)*3+i)%TOPIC_POOL.length],marker="tiizkwiz-auto-"+day+"-"+(i+1);
   if(markers.has(marker)){skipped.push({slot:i+1,topic,reason:"سبق إنشاء هذه المسودة في هذا اليوم"});continue}
   try{
    const gr=await fetch(new URL("/api/generate",req.url),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({topic})});
