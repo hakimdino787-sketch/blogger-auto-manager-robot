@@ -20,7 +20,7 @@ export default function Page(){
    const d=await r.json();
    if(!r.ok){const a=buildFallbackArticle(topic);setTitle(a.title);setContent(a.content);setLabels(a.labels.join(", "));setStatus("⚠️ "+(d.error||"المولد الأصلي غير مربوط؛ جهزت نسخة آمنة للتعديل."));return}
    const a=d.article,cover=makeOriginalCover(topic);
-   setTitle(a.title);setContent('<article dir="rtl"><img src="'+cover+'" alt="'+topic.replace(/"/g,"")+'" style="width:100%;height:auto;border-radius:18px;margin-bottom:24px"/>'+a.content_html+'<hr/><p style="font-size:13px;color:#64748b">محتوى أصلي أُعد خصيصاً لـTiizkwiz.</p></article>');setLabels(a.labels.join(", "));setStatus("✅ المقال الأصلي تجهز وفحصه الأساسي داز");
+   setTitle(a.title);setContent('<article dir="rtl"><img src="'+cover+'" alt="'+topic.replace(/"/g,"")+'" style="width:100%;height:auto;border-radius:18px;margin-bottom:24px"/>'+a.content_html+'<hr/><p style="font-size:13px;color:#64748b">محتوى أصلي أُعد خصيصاً لـTiizkwiz.</p></article>');setLabels(a.labels.join(", "));setStatus(d.source==="openai"?"✅ المقال تولّد بالمولد الذكي؛ راجعه قبل الحفظ.":"⚠️ استُخدمت صيغة محلية احتياطية؛ خصّص المقال وأضف معلومات موثوقة قبل حفظه.");
   }catch{const a=buildFallbackArticle(topic);setTitle(a.title);setContent(a.content);setLabels(a.labels.join(", "));setStatus("⚠️ تعذر الاتصال بالمولد؛ جهزت نسخة آمنة للتعديل.")}
  }
  function saveLocal(){
