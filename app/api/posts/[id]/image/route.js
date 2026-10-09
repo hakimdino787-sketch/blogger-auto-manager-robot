@@ -45,27 +45,29 @@ export async function POST(req, { params }) {
     return Response.json({ ok: false, error: "مسموح فقط بروابط الصور الأصلية المتفق عليها" }, { status: 400 });
   }
 
-  const base = `https://www.googleapis.com/blogger/v3/blogs/${encodeURIComponent(blogId)}/posts/${encodeURIComponent(postId)}`;
-  const get = await bloggerRequest(session, base);
-  const post = await get.r.json();
-  if (!get.r.ok) {
-    const out = NextResponse.json({ ok: false, error: post.error?.message || "تعذر قراءة المقال" }, { status: get.r.status });
-    if (refreshed || get.refreshed) setSessionCookie(out, get.session);
+  const listUrl = `https://www.googleapis.com/blogger/v3/blogs/${encodeURIComponent(blogId)}/posts?maxResults=50&status=DRAFT`;
+  const list = await bloggerRequest(session, listUrl);
+  const listData = await list.r.json();
+  if (!list.r.ok) {
+    const out = NextResponse.json({ ok: false, error: listData.error?.message || "تعذر قراءة قائمة المسودات" }, { status: list.r.status });
+    if (refreshed || list.refreshed) setSessionCookie(out, list.session);
     return out;
   }
-  if (post.status !== "DRAFT" && post.published) {
-    return Response.json({ ok: false, error: "حماية: هذا المقال ليس مسودة؛ لم يتم تعديله." }, { status: 409 });
+  const post = (listData.items || []).find(item => String(item.id) === String(postId));
+  if (!post || post.status !== "DRAFT") {
+    return Response.json({ ok: false, error: "المقال ما لقيناهش ضمن المسودات الحالية؛ ما تبدل والو." }, { status: 404 });
   }
   const escapedAlt = String(alt || post.title || "Tiizkwiz").replace(/[<>&"]/g, "");
   if (String(post.content || "").includes(imageUrl)) {
-    return Response.json({ ok: true, alreadyPresent: true, title: post.title, status: post.status || "DRAFT" });
+    return Response.json({ ok: true, alreadyPresent: true, title: post.title, status: "DRAFT" });
   }
   const image = `<div style="margin:0 0 24px"><img src="${imageUrl}" alt="${escapedAlt}" style="display:block;width:100%;height:auto;max-width:100%;border-radius:16px" loading="lazy"/></div>`;
   const updated = { ...post, content: image + (post.content || "") };
   delete updated.published;
-  const put = await bloggerRequest(get.session, base, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(updated) });
+  const base = `https://www.googleapis.com/blogger/v3/blogs/${encodeURIComponent(blogId)}/posts/${encodeURIComponent(postId)}`;
+  const put = await bloggerRequest(list.session, base, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(updated) });
   const result = await put.r.json();
   const out = NextResponse.json({ ok: put.r.ok, title: result.title || post.title, status: result.status || "DRAFT", imageAdded: put.r.ok, error: result.error?.message }, { status: put.r.status });
-  if (refreshed || get.refreshed || put.refreshed) setSessionCookie(out, put.session);
+  if (refreshed || list.refreshed || put.refreshed) setSessionCookie(out, put.session);
   return out;
 }
