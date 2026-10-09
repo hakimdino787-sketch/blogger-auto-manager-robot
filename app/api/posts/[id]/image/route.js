@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { getValidSession, refreshSession, setSessionCookie } from "../../../../../../lib/session";
-import { loadPersistentSession } from "../../../../../../lib/persistent-session";
+import { getValidSession, refreshSession, setSessionCookie } from "../../../../../lib/session";
+import { loadPersistentSession } from "../../../../../lib/persistent-session";
 
 async function bloggerRequest(session, url, options = {}) {
   let current = session;
