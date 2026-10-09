@@ -11,7 +11,7 @@ export async function POST(req){
   checks.title=title.trim().length>=25&&title.trim().length<=110;
   checks.length=words(text).length>=500;
   checks.structure=/<h2\b/i.test(content)&&/<p\b/i.test(content);
-  checks.originalCover=/data:image\/svg\+xml/i.test(content);
+  checks.originalCover=/<img\b[^>]*\bsrc\s*=\s*["']https:\/\//i.test(content);
   checks.repetition=repeatedRatio(text)<0.12;
   checks.keywordStuffing=!/(\b(أفضل|افضل|ربح|طريقة|طرق|دليل)\b[^.]{0,20}){8,}/i.test(text);
   checks.suspiciousLinks=(content.match(/https?:\/\//gi)||[]).length<=5;
@@ -19,6 +19,7 @@ export async function POST(req){
   if(!checks.title)issues.push("العنوان خاصو يكون بين 25 و110 حرف");
   if(!checks.length)issues.push("المقال أقل من 500 كلمة");
   if(!checks.structure)issues.push("خاص المقال يكون فيه فقرات وعناوين H2");
+  if(!checks.originalCover)issues.push("خاص المقال صورة غلاف فعلية برابط HTTPS؛ صورة SVG التجريبية ما كتتحسبش كصورة أصلية.");
   if(!checks.repetition)issues.push("كاين تكرار مرتفع للكلمات");
   if(!checks.keywordStuffing)issues.push("احتمال حشو كلمات مفتاحية");
   if(!checks.suspiciousLinks)issues.push("عدد الروابط مرتفع");
