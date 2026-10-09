@@ -3,6 +3,23 @@ import{refreshSession}from"../../../../lib/session";
 import{loadPersistentSession,savePersistentSession}from"../../../../lib/persistent-session";
 
 const IMAGE_MAP=[
+{match:"التحقق بخطوتين",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"تفريغ مساحة",url:"https://gen.krea.ai/images/ebe36f8d-7f44-430b-a82f-1b4d69f7ffe0.png"},
+{match:"تنظم ملفاتك",url:"https://gen.krea.ai/images/92fc3ca8-2238-4e48-b228-a4cead15c48d.png"},
+{match:"بريدك الإلكتروني",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"العروض الوهمية",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"الواي فاي",url:"https://gen.krea.ai/images/74d0de0e-468e-4bb3-901e-3802519a1a59.png"},
+{match:"الخصوصية",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"واتساب",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"الموقع الإلكتروني آمن",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"التطبيقات",url:"https://gen.krea.ai/images/ebe36f8d-7f44-430b-a82f-1b4d69f7ffe0.png"},
+{match:"المتصفح",url:"https://gen.krea.ai/images/74d0de0e-468e-4bb3-901e-3802519a1a59.png"},
+{match:"تشارك الملفات",url:"https://gen.krea.ai/images/92fc3ca8-2238-4e48-b228-a4cead15c48d.png"},
+{match:"الدعم التقني المزيفة",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"الصور المحذوفة",url:"https://gen.krea.ai/images/92fc3ca8-2238-4e48-b228-a4cead15c48d.png"},
+{match:"بطارية الهاتف",url:"https://gen.krea.ai/images/ebe36f8d-7f44-430b-a82f-1b4d69f7ffe0.png"},
+{match:"صلاحيات التطبيقات",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
+{match:"روتين أسبوعي",url:"https://gen.krea.ai/images/28c0027f-3108-428f-939d-56b9f9dad970.png"},
 {match:"الروابط المشبوهة",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
 {match:"نسخة احتياطية",url:"https://gen.krea.ai/images/92fc3ca8-2238-4e48-b228-a4cead15c48d.png"},
 {match:"كلمات مرور",url:"https://gen.krea.ai/images/3973d470-43d8-4fe6-87ab-c4f3f0cc2a4a.png"},
